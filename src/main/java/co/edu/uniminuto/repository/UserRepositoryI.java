@@ -17,4 +17,7 @@ public interface UserRepositoryI {
     List<User> findAll();
 
     User findByEmail(String email);
+    
+    // Permite validar el correo y la contraseña del usuario para iniciar sesion
+    User login(String email, String password);
 }
