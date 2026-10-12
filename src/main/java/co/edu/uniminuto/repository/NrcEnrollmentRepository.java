@@ -1,20 +1,44 @@
 package co.edu.uniminuto.repository;
-//Ubica la interfaz dentro del paquete 
 
-import org.springframework.data.jpa.repository.JpaRepository;
-//Importa la interfaz que contiene los metodos de consulta
-
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-//Importa la anotacion que le dice por el framework que este componente maneja la base de datos 
-
 import co.edu.uniminuto.entity.NrcEnrollment;
-//Importa la entidad java que esta mapeada con la tabla
-
+import co.edu.uniminuto.jpa.JpaNrcEnrollment;
 
 @Repository
-//le dce a spring que debe gestionar esta interfaz como un Bean
+public class NrcEnrollmentRepository implements NrcEnrollmentRepositoryI {
 
-public interface NrcEnrollmentRepository extends JpaRepository<NrcEnrollment, Integer> {
-	//se define como una interfaz
-	//indiamos la entidad sobre la cual se van a hacer las operaciones y el tipo de dato de la clave primaria 
+    @Autowired
+    private JpaNrcEnrollment jpaNrcEnrollment;
+
+    @Override
+    public NrcEnrollment insertNrcEnrollment(NrcEnrollment nrcEnrollment) {
+        return jpaNrcEnrollment.save(nrcEnrollment);
+    }
+
+    @Override
+    public NrcEnrollment updateNrcEnrollment(NrcEnrollment nrcEnrollment) {
+        return jpaNrcEnrollment.save(nrcEnrollment);
+    }
+
+    @Override
+    public int deleteNrcEnrollment(NrcEnrollment nrcEnrollment) {
+        try {
+            jpaNrcEnrollment.delete(nrcEnrollment);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public NrcEnrollment findByNrcEnrollment(int nrcEnrollmentId) {
+        return jpaNrcEnrollment.findById(nrcEnrollmentId).orElse(null);
+    }
+
+    @Override
+    public List<NrcEnrollment> findAll() {
+        return jpaNrcEnrollment.findAll();
+    }
 }
