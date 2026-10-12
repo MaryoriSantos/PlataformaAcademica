@@ -9,5 +9,4 @@ public interface SubjectRepositoryI {
     int deleteSubject(Subject subject);
     Subject findBySubject(int subjectId);
     List<Subject> findAll();
-    Subject findByName(String name);
 }

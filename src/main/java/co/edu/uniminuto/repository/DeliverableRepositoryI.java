@@ -7,6 +7,6 @@ public interface DeliverableRepositoryI {
     Deliverable insertDeliverable(Deliverable deliverable);
     Deliverable updateDeliverable(Deliverable deliverable);
     int deleteDeliverable(Deliverable deliverable);
-    Deliverable findByDeliverable(int deliverableId);
+    Deliverable findByDeliverable(int deliverableId); // O findById según prefieras
     List<Deliverable> findAll();
 }

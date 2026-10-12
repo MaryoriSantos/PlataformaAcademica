@@ -1,12 +1,44 @@
 package co.edu.uniminuto.repository;
-//Define la carpeta donde esta el archivo
 
-import org.springframework.data.jpa.repository.JpaRepository;
-//Trae las herramientas del JPA
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-// Le indica a Spring que esta interfaz maneja el acceso a la base de datos 
 import co.edu.uniminuto.entity.Subject;
-//importa la entidad de la tabla a tranbajar 
+import co.edu.uniminuto.jpa.JpaSubject;
+
 @Repository
-public interface SubjectRepository extends JpaRepository<Subject, Integer> {
-}//le ordena a la interfaz heredar los metodos, la tabla que va a manipular y el tipo de dato de la clave primaria 
+public class SubjectRepository implements SubjectRepositoryI {
+
+    @Autowired
+    private JpaSubject jpaSubject;
+
+    @Override
+    public Subject insertSubject(Subject subject) {
+        return jpaSubject.save(subject);
+    }
+
+    @Override
+    public Subject updateSubject(Subject subject) {
+        return jpaSubject.save(subject);
+    }
+
+    @Override
+    public int deleteSubject(Subject subject) {
+        try {
+            jpaSubject.delete(subject);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public Subject findBySubject(int subjectId) {
+        return jpaSubject.findById(subjectId).orElse(null);
+    }
+
+    @Override
+    public List<Subject> findAll() {
+        return jpaSubject.findAll();
+    }
+}

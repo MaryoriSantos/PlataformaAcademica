@@ -1,14 +1,44 @@
 package co.edu.uniminuto.repository;
-//Define que este archivo pertenece al repository
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import co.edu.uniminuto.entity.Deliverable;
+import co.edu.uniminuto.jpa.JpaDeliverable;
 
 @Repository
-//indica a spring que esta interfaz gestione el acceso a datos 
-public interface DeliverableRepository extends JpaRepository<Deliverable, Integer> {
-	//Es la clase de entidad mapeada con la tabla de la base de datos 
-	//muestra el tipo de dato de la clave  primaria 
+public class DeliverableRepository implements DeliverableRepositoryI {
+
+    @Autowired
+    private JpaDeliverable jpaDeliverable;
+
+    @Override
+    public Deliverable insertDeliverable(Deliverable deliverable) {
+        return jpaDeliverable.save(deliverable);
+    }
+
+    @Override
+    public Deliverable updateDeliverable(Deliverable deliverable) {
+        return jpaDeliverable.save(deliverable);
+    }
+
+    @Override
+    public int deleteDeliverable(Deliverable deliverable) {
+        try {
+            jpaDeliverable.delete(deliverable);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public Deliverable findByDeliverable(int deliverableId) {
+        return jpaDeliverable.findById(deliverableId).orElse(null);
+    }
+
+    @Override
+    public List<Deliverable> findAll() {
+        return jpaDeliverable.findAll();
+    }
 }
