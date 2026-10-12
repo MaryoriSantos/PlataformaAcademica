@@ -60,4 +60,21 @@ public class UserService implements UserServiceI {
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
+	
+	// Permite validar las credenciales del usuario para iniciar sesion
+	@Override
+	public User login(String email, String password) {
+
+	    // Busca el usuario registrado utilizando su correo electronico
+	    User user = userRepository.findByEmail(email);
+
+	    // Verifica que el usuario exista y que la contraseña coincida
+	    if (user != null && user.getPassword().equals(password)) {
+	        return user;
+	    }
+
+	    // Si las credenciales no son correctas, no permite el inicio de sesion
+	    return null;
+	}
 }
+

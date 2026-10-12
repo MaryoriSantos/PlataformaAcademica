@@ -51,4 +51,10 @@ public class UserRepository implements UserRepositoryI {
 		return jpaUser.findByEmail(email);
 	}
 
+	@Override
+	public User login(String email, String password) {
+
+		return null;
+	}
+
 }
