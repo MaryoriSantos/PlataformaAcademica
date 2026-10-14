@@ -1,60 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Académica</title>
 
-    <link rel="stylesheet" href="css/estilos.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#003698">
+	<title>Plataforma Académica | Iniciar sesión</title>
+	<link rel="stylesheet" href="css/estilos.css">
 </head>
 
-<body>
-
-    <div class="login-container">
-
-        <div class="login-card">
-
-            <h1>Plataforma Académica</h1>
-            <p class="subtitle">Inicia sesión para continuar</p>
-
-            <form id="loginForm">
-
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email"
-                        placeholder="Ingresa tu correo"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password"
-                        placeholder="Ingresa tu contraseña"
-                        required>
-                </div>
-
-                <button type="submit" class="btn-primary">
-                    Iniciar sesión
-                </button>
-
-            </form>
-
-            <p class="register-text">
-                ¿No tienes una cuenta?
-                <a href="registro.html">Registrarse</a>
-            </p>
-
-        </div>
-
-    </div>
-
-    <script src="js/login.js"></script>
-
+<body class="auth-body">
+	<main class="auth-shell">
+		<section class="auth-brand-panel">
+			<div class="brand-lockup"><span class="brand-mark">PA</span><span>Plataforma Académica</span></div>
+			<div class="brand-copy">
+				<span class="eyebrow">TU ESPACIO ACADÉMICO</span>
+				<h1>Organiza tus ideas.<br><span>Impulsa tu aprendizaje.</span></h1>
+				<p>Un lugar para conectar asignaturas, recursos, preguntas y actividades académicas.</p>
+			</div>
+			<div class="brand-bottom"><span class="yellow-dot"></span> Tu vida académica, en un solo lugar.</div>
+			<div class="decor decor-one"></div>
+			<div class="decor decor-two"></div>
+		</section>
+		<section class="auth-form-panel">
+			<div class="mobile-brand brand-lockup"><span class="brand-mark">PA</span><span>Plataforma Académica</span>
+			</div>
+			<div class="auth-card">
+				<span class="eyebrow blue-eyebrow">BIENVENIDA/O DE NUEVO</span>
+				<h2>Iniciar sesión</h2>
+				<p class="muted">Ingresa tus credenciales para continuar.</p>
+				<div id="login-message" class="notice" role="status" aria-live="polite" hidden></div>
+				<form id="loginForm" novalidate>
+					<label for="email">Correo electrónico</label>
+					<input type="email" id="email" name="email" placeholder="nombre@correo.com" autocomplete="username"
+						required maxlength="150">
+					<label for="password">Contraseña</label>
+					<div class="password-wrap"><input type="password" id="password" name="password"
+							placeholder="Escribe tu contraseña" autocomplete="current-password" required><button
+							class="password-toggle" type="button" data-toggle-password="password"
+							aria-label="Mostrar contraseña">Ver</button></div>
+					<button type="submit" class="btn btn-primary btn-full" id="login-submit"><span>Iniciar
+							sesión</span><span aria-hidden="true">↗</span></button>
+				</form>
+				<p class="auth-switch">¿Aún no tienes cuenta? <a href="registro.html">Crear cuenta</a></p>
+				<p class="small-note">Acceso académico · Datos guardados en la plataforma</p>
+			</div>
+		</section>
+	</main>
+	<script src="js/api.js"></script>
+	<script src="js/login.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#003698">
+	<title>Plataforma Académica | Crear cuenta</title>
+	<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body class="auth-body register-body">
+	<main class="auth-shell register-shell">
+		<section class="auth-brand-panel">
+			<div class="brand-lockup"><span class="brand-mark">PA</span><span>Plataforma Académica</span></div>
+			<div class="brand-copy">
+				<span class="eyebrow">EMPIEZA AQUÍ</span>
+				<h1>Tu siguiente paso<br><span>comienza hoy.</span></h1>
+				<p>Crea tu cuenta para consultar y organizar tu actividad académica.</p>
+			</div>
+			<div class="brand-bottom"><span class="yellow-dot"></span> Aprende, comparte y avanza.</div>
+			<div class="decor decor-one"></div>
+			<div class="decor decor-two"></div>
+		</section>
+		<section class="auth-form-panel register-panel">
+			<div class="mobile-brand brand-lockup"><span class="brand-mark">PA</span><span>Plataforma Académica</span>
+			</div>
+			<div class="auth-card register-card">
+				<span class="eyebrow blue-eyebrow">REGISTRO DE ESTUDIANTE</span>
+				<h2>Crear cuenta</h2>
+				<p class="muted">Completa tus datos para registrarte.</p>
+				<div id="register-message" class="notice" role="status" aria-live="polite" hidden></div>
+				<form id="registerForm" novalidate>
+					<div class="form-grid-two">
+						<div><label for="firstName">Nombre</label><input id="firstName" name="firstName" required
+								maxlength="100" autocomplete="given-name" placeholder="Tu nombre"></div>
+						<div><label for="lastName">Apellido</label><input id="lastName" name="lastName" required
+								maxlength="100" autocomplete="family-name" placeholder="Tu apellido"></div>
+					</div>
+					<label for="registerEmail">Correo electrónico</label>
+					<input type="email" id="registerEmail" name="email" required maxlength="150" autocomplete="email"
+						placeholder="nombre@correo.com">
+					<div class="form-grid-two">
+						<div><label for="registerPassword">Contraseña</label><input type="password"
+								id="registerPassword" name="password" required minlength="6" autocomplete="new-password"
+								placeholder="Mínimo 6 caracteres"></div>
+						<div><label for="confirmPassword">Confirmar contraseña</label><input type="password"
+								id="confirmPassword" name="confirmPassword" required minlength="6"
+								autocomplete="new-password" placeholder="Repítela"></div>
+					</div>
+					<p class="field-hint">Se asignará el rol de estudiante configurado en la base de datos.</p>
+					<button type="submit" class="btn btn-primary btn-full" id="register-submit"><span>Crear
+							cuenta</span><span aria-hidden="true">↗</span></button>
+				</form>
+				<p class="auth-switch">¿Ya tienes cuenta? <a href="index.html">Iniciar sesión</a></p>
+			</div>
+		</section>
+	</main>
+	<script src="js/api.js"></script>
+	<script src="js/registro.js"></script>
+</body>
+
+</html>

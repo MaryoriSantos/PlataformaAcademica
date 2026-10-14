@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="3.2" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd">
-	<persistence-unit name="PlataformaAcademica" transaction-type="RESOURCE_LOCAL">
+<persistence version="3.2" xmlns="https://jakarta.ee/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd">
+	<persistence-unit name="PlataformaAcademica"
+		transaction-type="RESOURCE_LOCAL">
 		<class>co.edu.uniminuto.entity.AiRecomendation</class>
 		<class>co.edu.uniminuto.entity.Answer</class>
 		<class>co.edu.uniminuto.entity.Deliverable</class>
@@ -17,10 +20,12 @@
 		<class>co.edu.uniminuto.entity.TopicDifficulty</class>
 		<class>co.edu.uniminuto.entity.User</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/plataforma_academica"/>
-			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.password" value="Bts1207#"/>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/plataforma_academica" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="Bts1207#" />
 		</properties>
 	</persistence-unit>
 </persistence>

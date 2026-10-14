@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#003698">
+	<title>Plataforma Académica | Panel</title>
+	<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body class="app-body">
+	<div class="app-layout">
+		<aside class="sidebar" id="sidebar">
+			<a class="sidebar-brand" href="dashboard.html"><span
+					class="brand-mark">PA</span><span><strong>Plataforma</strong><small>Académica</small></span></a>
+			<div class="sidebar-label">MENÚ PRINCIPAL</div>
+			<nav class="side-nav" id="side-nav">
+				<button class="nav-item active" data-view="overview"><span
+						class="nav-icon">⌂</span><span>Inicio</span></button>
+				<button class="nav-item" data-view="users"><span class="nav-icon">♙</span><span>Usuarios</span></button>
+				<button class="nav-item" data-view="roles"><span class="nav-icon">▣</span><span>Roles</span></button>
+				<div class="nav-section-title">ACADÉMICO</div>
+				<button class="nav-item" data-view="subjects"><span
+						class="nav-icon">▤</span><span>Asignaturas</span></button>
+				<button class="nav-item" data-view="nrcs"><span class="nav-icon">◫</span><span>NRC</span></button>
+				<button class="nav-item" data-view="nrcEnrollments"><span
+						class="nav-icon">♧</span><span>Inscripciones</span></button>
+				<button class="nav-item" data-view="deliverables"><span
+						class="nav-icon">▣</span><span>Entregables</span></button>
+				<button class="nav-item" data-view="grades"><span
+						class="nav-icon">✓</span><span>Calificaciones</span></button>
+				<div class="nav-section-title">RECURSOS Y COMUNIDAD</div>
+				<button class="nav-item" data-view="resources"><span
+						class="nav-icon">▧</span><span>Recursos</span></button>
+				<button class="nav-item" data-view="topics"><span class="nav-icon">◉</span><span>Temas</span></button>
+				<button class="nav-item" data-view="resourceRatings"><span
+						class="nav-icon">☆</span><span>Valoraciones</span></button>
+				<button class="nav-item" data-view="topicDifficulties"><span
+						class="nav-icon">⌁</span><span>Dificultades</span></button>
+				<button class="nav-item" data-view="questions"><span
+						class="nav-icon">?</span><span>Preguntas</span></button>
+				<button class="nav-item" data-view="answers"><span
+						class="nav-icon">↳</span><span>Respuestas</span></button>
+				<button class="nav-item" data-view="notifications"><span
+						class="nav-icon">♧</span><span>Notificaciones</span></button>
+				<button class="nav-item" data-view="aiRecomendations"><span
+						class="nav-icon">✧</span><span>Recomendaciones IA</span></button>
+			</nav>
+			<div class="sidebar-footer">
+				<div class="sidebar-footer-line"></div><button id="logout-button" class="nav-item logout-item"><span
+						class="nav-icon">↪</span><span>Cerrar sesión</span></button>
+			</div>
+		</aside>
+		<main class="app-main">
+			<header class="topbar">
+				<button class="mobile-menu-button" id="mobile-menu-button" aria-label="Abrir menú">☰</button>
+				<div>
+					<div class="topbar-kicker">PLATAFORMA ACADÉMICA</div>
+					<div class="topbar-title" id="topbar-title">Inicio</div>
+				</div>
+				<div class="topbar-user">
+					<div class="avatar" id="avatar-initials">PA</div>
+					<div class="topbar-user-copy"><strong id="current-user-name">Mi cuenta</strong><small
+							id="current-user-email">Sesión local</small></div>
+				</div>
+			</header>
+			<section id="app-content" class="app-content" aria-live="polite"></section>
+			<footer class="app-footer">Plataforma Académica <span>·</span> Proyecto académico</footer>
+		</main>
+	</div>
+	<div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+	<script src="js/api.js"></script>
+	<script src="js/dashboard.js"></script>
+</body>
+
+</html>
