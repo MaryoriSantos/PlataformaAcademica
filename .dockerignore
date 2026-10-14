@@ -1,0 +1,22 @@
+# Archivos de Git
+.git
+.gitignore
+
+# Credenciales locales
+.env
+.env.*
+
+# Archivos generados por Maven
+target/
+
+# Archivos de configuracion de Eclipse
+.classpath
+.project
+.settings/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Colecciones de Postman
+postman/
