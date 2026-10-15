@@ -12,6 +12,13 @@
         }
         settings.headers = Object.assign({ 'Accept': 'application/json, text/plain, */*' }, settings.headers);
 
+        // Agrega el token JWT a las solicitudes autenticadas
+        const token = sessionStorage.getItem('pa_token');
+
+        if (token) {
+            settings.headers['Authorization'] = 'Bearer ' + token;
+        }
+
         let response;
         try {
             response = await fetch(url, settings);
@@ -35,6 +42,22 @@
     function post(url, body) { return request(url, { method: 'POST', body: body }); }
     function put(url, body) { return request(url, { method: 'PUT', body: body }); }
     function remove(url, body) { return request(url, { method: 'DELETE', body: body }); }
+    // Guarda el token de la sesion actual
+    function saveToken(token) {
+        if (token) {
+            sessionStorage.setItem('pa_token', token);
+        }
+    }
+
+    // Elimina el token al cerrar sesion
+    function clearToken() {
+        sessionStorage.removeItem('pa_token');
+    }
+
+    // Consulta el token de la sesion actual
+    function getToken() {
+        return sessionStorage.getItem('pa_token');
+    }
     function escapeHtml(value) {
         return String(value == null ? '' : value).replace(/[&<>"']/g, function(char) {
             return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
@@ -72,5 +95,18 @@
         aiRecomendations: { title: 'Recomendaciones IA', singular: 'recomendación', endpoint: '/ai-recomendations', idKey: 'recommendationId', fields: [{ key: 'recommendation', label: 'Recomendación', type: 'textarea', required: true }, { key: 'recommendationType', label: 'Tipo de recomendación', type: 'text' }, { key: 'createdAt', label: 'Fecha de creación', type: 'datetime' }, { key: 'nrc', label: 'ID del NRC', type: 'relation', relationKey: 'nrcId', required: true }, { key: 'topic', label: 'ID del tema', type: 'relation', relationKey: 'topicId', required: true }, { key: 'user', label: 'ID del usuario', type: 'relation', relationKey: 'userId', required: true }], columns: [['recommendationId', 'ID'], ['recommendationType', 'Tipo'], ['recommendation', 'Recomendación'], ['createdAt', 'Fecha']] }
     };
 
-    window.PAApi = { request: request, get: get, post: post, put: put, remove: remove, escapeHtml: escapeHtml, showNotice: showNotice, initials: initials, modules: modules };
+    window.PAApi = {
+        request: request,
+        get: get,
+        post: post,
+        put: put,
+        remove: remove,
+        saveToken: saveToken,
+        clearToken: clearToken,
+        getToken: getToken,
+        escapeHtml: escapeHtml,
+        showNotice: showNotice,
+        initials: initials,
+        modules: modules
+    };
 })();

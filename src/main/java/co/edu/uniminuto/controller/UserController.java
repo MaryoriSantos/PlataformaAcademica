@@ -60,27 +60,36 @@ public class UserController {
         return userService.updateUser(user);
     }
 
-    // Valida las credenciales y genera un token JWT
+ // Valida las credenciales y genera un token JWT
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(
-            @RequestParam String email,
-            @RequestParam String password) {
+            @RequestBody Map<String, String> credentials) {
 
-        // Comprueba el correo y la contrasena mediante el servicio
+        // Obtiene el correo y la contrasena del JSON recibido
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+
+        // Comprueba que se hayan enviado las credenciales
+        if (email == null || email.isBlank()
+                || password == null || password.isEmpty()) {
+
+            return ResponseEntity.badRequest().body(
+                    Map.of("error", "El correo y la contrasena son obligatorios"));
+        }
+
+        // Valida las credenciales mediante el servicio
         User user = userService.login(email, password);
 
         // Rechaza las credenciales incorrectas
         if (user == null) {
-            return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of(
-                            "error", "Correo o contrasena incorrectos"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    Map.of("error", "Correo o contrasena incorrectos"));
         }
 
         // Genera un token para el usuario autenticado
         String token = jwtService.generateToken(user);
 
-        // Devuelve el token para utilizarlo en las siguientes solicitudes
+        // Devuelve el token sin incluir la contrasena
         return ResponseEntity.ok(Map.of(
                 "token", token,
                 "tokenType", "Bearer",

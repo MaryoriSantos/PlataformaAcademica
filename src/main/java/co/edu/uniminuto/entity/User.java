@@ -7,32 +7,31 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 /**
  * The persistent class for the users database table.
  * 
  */
 @Entity
-@Table(name="users")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@Table(name = "users")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int userId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_at")
+	@Column(name = "created_at")
 	private Date createdAt;
 
 	private String email;
 
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
 	// Permite recibir la contraseña, pero evita devolverla en el JSON
@@ -41,51 +40,51 @@ public class User implements Serializable {
 
 	private byte status;
 
-	//bi-directional many-to-one association to AiRecomendation
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to AiRecomendation
+	@OneToMany(mappedBy = "user")
 	private List<AiRecomendation> aiRecomendations;
 
-	//bi-directional many-to-one association to Answer
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Answer
+	@OneToMany(mappedBy = "user")
 	private List<Answer> answers;
 
-	//bi-directional many-to-one association to Deliverable
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Deliverable
+	@OneToMany(mappedBy = "user")
 	private List<Deliverable> deliverables;
 
-	//bi-directional many-to-one association to Grade
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Grade
+	@OneToMany(mappedBy = "user")
 	private List<Grade> grades;
 
-	//bi-directional many-to-one association to Notification
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Notification
+	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications;
 
-	//bi-directional many-to-one association to NrcEnrollment
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to NrcEnrollment
+	@OneToMany(mappedBy = "user")
 	private List<NrcEnrollment> nrcEnrollments;
 
-	//bi-directional many-to-one association to Nrc
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Nrc
+	@OneToMany(mappedBy = "user")
 	private List<Nrc> nrcs;
 
-	//bi-directional many-to-one association to Question
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Question
+	@OneToMany(mappedBy = "user")
 	private List<Question> questions;
 
-	//bi-directional many-to-one association to ResourceRating
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to ResourceRating
+	@OneToMany(mappedBy = "user")
 	private List<ResourceRating> resourceRatings;
 
-	//bi-directional many-to-one association to Resource
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Resource
+	@OneToMany(mappedBy = "user")
 	private List<Resource> resources;
 
-	//bi-directional many-to-one association to TopicDifficulty
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to TopicDifficulty
+	@OneToMany(mappedBy = "user")
 	private List<TopicDifficulty> topicDifficulties;
 
-	//bi-directional many-to-one association to Role
+	// bi-directional many-to-one association to Role
 	@ManyToOne
 	private Role role;
 
