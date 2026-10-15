@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * The persistent class for the users database table.
@@ -33,6 +35,8 @@ public class User implements Serializable {
 	@Column(name="last_name")
 	private String lastName;
 
+	// Permite recibir la contraseña, pero evita devolverla en el JSON
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	private byte status;
