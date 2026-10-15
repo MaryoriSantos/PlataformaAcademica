@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"co.edu.uniminuto.jpa"})
 @EntityScan(basePackages = {"co.edu.uniminuto.entity"})
 @ComponentScan(basePackages = {"co.edu.uniminuto.controller","co.edu.uniminuto.controller",
-		"co.edu.uniminuto.repository", "co.edu.uniminuto.services"})
+		"co.edu.uniminuto.repository", "co.edu.uniminuto.services","co.edu.uniminuto.config"})
 public class PlataformaAcademicaApplication {
 
 	public static void main(String[] args) {
