@@ -1,6 +1,7 @@
 package co.edu.uniminuto.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,54 +15,76 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniminuto.entity.User;
+import co.edu.uniminuto.services.JwtService;
 import co.edu.uniminuto.services.UserServiceI;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
 
-	@Autowired
-	UserServiceI userService;
+    // Servicio que gestiona las operaciones de los usuarios
+    @Autowired
+    UserServiceI userService;
 
-	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.findAll();
-	}
+    // Servicio que genera los tokens JWT
+    @Autowired
+    JwtService jwtService;
 
-	@GetMapping("/id")
-	public User getByUser(@RequestParam int id) {
-		return userService.findByUser(id);
-	}
+    // Consulta todos los usuarios
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.findAll();
+    }
 
-	@GetMapping("/email")
-	public User getByEmail(@RequestParam String email) {
-		return userService.findByEmail(email);
-	}
+    // Busca un usuario por su identificador
+    @GetMapping("/id")
+    public User getByUser(@RequestParam int id) {
+        return userService.findByUser(id);
+    }
 
-	@PostMapping
-	public User postUser(@RequestBody User user) {
-		return userService.insertUser(user);
-	}
+    // Busca un usuario por su correo
+    @GetMapping("/email")
+    public User getByEmail(@RequestParam String email) {
+        return userService.findByEmail(email);
+    }
 
-	@PutMapping
-	public User putUser(@RequestBody User user) {
-		return userService.updateUser(user);
-	}
+    // Registra un usuario nuevo
+    @PostMapping
+    public User postUser(@RequestBody User user) {
+        return userService.insertUser(user);
+    }
 
-	// Permite iniciar sesion con el correo y la contraseña
-	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+    // Actualiza un usuario existente
+    @PutMapping
+    public User putUser(@RequestBody User user) {
+        return userService.updateUser(user);
+    }
 
-		// Valida las credenciales mediante el servicio
-		User user = userService.login(email, password);
+    // Valida las credenciales y genera un token JWT
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(
+            @RequestParam String email,
+            @RequestParam String password) {
 
-		// Si las credenciales no coinciden, rechaza el acceso
-		if (user == null) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Correo o contraseña incorrectos");
-		}
+        // Comprueba el correo y la contrasena mediante el servicio
+        User user = userService.login(email, password);
 
-		// Si las credenciales coinciden, confirma el acceso
-		return ResponseEntity.ok("Inicio de sesion exitoso");
-	}
+        // Rechaza las credenciales incorrectas
+        if (user == null) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of(
+                            "error", "Correo o contrasena incorrectos"));
+        }
 
+        // Genera un token para el usuario autenticado
+        String token = jwtService.generateToken(user);
+
+        // Devuelve el token para utilizarlo en las siguientes solicitudes
+        return ResponseEntity.ok(Map.of(
+                "token", token,
+                "tokenType", "Bearer",
+                "email", user.getEmail()
+        ));
+    }
 }
